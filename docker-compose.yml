@@ -1,0 +1,32 @@
+services:
+  dev_env:
+    build:
+      context: .
+      args:
+        user_uid: ${USER_UID}
+    tty: true
+    networks:
+      - mysql_net
+  mysql_db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PWD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - type: bind
+        source: ${MYSQL_PATH}
+        target: /var/lib/mysql
+    networks:
+      mysql_net:
+        ipv4_address: 10.0.0.3
+
+networks:
+  mysql_net:
+    driver: bridge
+    ipam:
+      config:
+          - subnet: 10.0.0.0/24
+            gateway: 10.0.0.1
