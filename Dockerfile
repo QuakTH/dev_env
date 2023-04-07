@@ -40,5 +40,9 @@ RUN set e; conda create -c conda-forge -n dev python=3.10 mamba
 COPY ./scripts/install_packages.sh /home/$USER_NAME
 RUN ./install_packages.sh
 
+# Add these lines to .bashrc to activate the dev env when opening bash
 RUN conda init bash \
     && echo 'conda activate dev' >>  ~/.bashrc
+
+# Added entrypoint to prevent container exiting
+ENTRYPOINT [ "/bin/bash" ]
