@@ -2,20 +2,25 @@ FROM ubuntu:latest
 
 # Create and set the default user
 ENV USER_NAME=dev_user
-ARG user_uid
+ARG user_uid=1001
 ARG user_gid=$user_uid
+ARG user_pwd
 
 # Create the user and grant sudo command access
 RUN groupadd --gid $user_gid $USER_NAME \
     && useradd --uid $user_uid --gid $user_gid -m $USER_NAME \
+    && echo "${USER_NAME}:${user_pwd}" | chpasswd \
     && apt-get update \
     && apt-get upgrade \
     && apt-get install -y sudo \
     && echo $USER_NAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USER_NAME \
     && chmod 0440 /etc/sudoers.d/$USER_NAME
 
+# Changed default shell
+RUN chsh -s /bin/bash $USER_NAME
+
 # Install packages required for building image
-RUN apt-get install -y wget
+RUN apt-get install -y wget net-tools nano openssh-server
 
 # Use the user created before
 USER $USER_NAME
@@ -45,4 +50,5 @@ RUN conda init bash \
     && echo 'conda activate dev' >>  ~/.bashrc
 
 # Added entrypoint to prevent container exiting
-ENTRYPOINT [ "/bin/bash" ]
+# And restarted sshd
+ENTRYPOINT sudo service ssh restart && /bin/bash

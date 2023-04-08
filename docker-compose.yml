@@ -4,6 +4,7 @@ services:
       context: .
       args:
         user_uid: ${USER_UID}
+        user_pwd: ${USER_PWD}
     tty: true
     networks:
       - mysql_net
