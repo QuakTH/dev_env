@@ -6,6 +6,8 @@ services:
         user_uid: ${USER_UID}
         user_pwd: ${USER_PWD}
     tty: true
+    ports:
+      - ${SSH_PORT}:22
     networks:
       - mysql_net
   mysql_db:
