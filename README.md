@@ -7,7 +7,7 @@ This is a repository storing the resources for creating a isolated development(o
 Currently so far, This repository contains these resources:
 
 1. A ubuntu container with miniconda3 installed and some packages for machine learning and data science installed
-2. A mysql container with
+2. A mysql container
 3. Both containers inside the same network
 
 This repository will be improved further with more resources (like mongodb etc) are added for development
@@ -24,7 +24,7 @@ This repository will be improved further with more resources (like mongodb etc) 
 git clone https://github.com/QuakTH/dev_env.git
 ```
 
-2. change your path to the cloned repo. And change the `.env_example`. If you are confused with the environment variables check the meaning below :
+2. change your path to the cloned repo. And change the `.env_example`. Remember to change the file name to `.env`. If you are confused with the environment variables check the meaning below :
 
 - USER_UID : A uid for the ubuntu user
 - USER_PWD : A password for the ubuntu user
