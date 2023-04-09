@@ -44,7 +44,7 @@ docker compose up -d
 
 ## TODOs
 
-- [] Create a directory for containing the scripts for the dev environment and connect the directory to the host directory
-- [] Create examples of how to use the development environment to the README file
-- [] Currently the ubuntu image uses the arm64 build when installing miniconda3. Create a script for installing different buils for different platform
-- [] Remove the password ssh process and only use the key process
+- [ ] Create a directory for containing the scripts for the dev environment and connect the directory to the host directory
+- [ ] Create examples of how to use the development environment to the README file
+- [ ] Currently the ubuntu image uses the arm64 build when installing miniconda3. Create a script for installing different buils for different platform
+- [ ] Remove the password ssh process and only use the key process
